@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur Itqan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 bg-cover font-roboto">
+    <!-- Fond flou -->
+    <div class="absolute inset-0 z-[-1] bg-cover bg-center filter blur-md" style="background-image: url('img1.jpg');"></div>
+    
+    <!-- Header -->
+    <header class="bg-gray-800 py-5 px-8 flex items-center justify-center shadow-md sticky top-0 z-50">
+        <div class="h-20 w-20 rounded-full bg-white flex items-center justify-center shadow-lg">
+            <img src="logo.png" alt="Logo Itqan" class="object-contain w-16 h-16">
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="flex-1 flex flex-col items-center justify-center bg-white/90 p-10 shadow-lg rounded-lg m-5">
+        <h1 class="text-2xl font-bold mb-5 text-gray-800">Bienvenue sur Itqan</h1>
+        <p class="text-gray-600 mb-10 text-center">
+            Gérez vos profils de manière efficace avec des commandes simples et intuitives. 
+            Commencez par modifier ou ajouter un profil. Profitez d'une expérience fluide et moderne.
+        </p>
+
+        <table id="stagiairesTable" class="w-full mt-8 mb-5 border border-collapse border-gray-300">
+            <thead>
+                <tr>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Nom Complet</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Université</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Date de début</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Date de fin</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Type de stage</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300">Statut</th>
+                    <th class="bg-gray-800 text-white py-3 px-4 border border-gray-300 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Ali Ben Ali</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Université de Tunis</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">01/06/2024</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">30/09/2024</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Stage Professionnel</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Présentiel</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">
+                        <a href="modifier/modifier.html"><button class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600">
+                            <i class="fas fa-edit"></i>
+                        </button></a>
+                        <a href="détails/essai.html"><button class="bg-green-500 text-white p-2 rounded-full hover:bg-green-600 mx-2">
+                            <i class="fas fa-eye"></i>
+                        </button></a>
+                        <button class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Fatma Zohra</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Université de Sfax</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">15/07/2024</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">15/12/2024</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Stage Recherche</td>
+                    <td class="py-3 px-4 border border-gray-300 text-center">Remote</td>
+                    <td class='py-3 px-4 border border-gray-300 text-center'>
+                        <a href='modifier/modifier.html'><button class='bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600'>
+                            <i class='fas fa-edit'></i>
+                        </button></a>
+                        <a href='détails/essai.html'><button class='bg-green-500 text-white p-2 rounded-full hover:bg-green-600 mx-2'>
+                            <i class='fas fa-eye'></i>
+                        </button></a>
+                        <button class='bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600'>
+                            <i class='fas fa-trash'></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttons flex space-x-4">
+            <a href="new profil/new profile.html"><button class="bg-blue-500 text-white py-3 px-8 rounded-lg hover:bg-blue-600 transition-shadow">
+                <i class="fas fa-plus"></i> Ajouter un profil
+            </button></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-3 px-5 text-sm">
+        &copy; 2025 Itqan. Tous droits réservés.
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
