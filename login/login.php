@@ -91,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Additional Links -->
         <div class="mt-4 text-center">
             <a href="forget_pass.html" class="text-sm text-blue-600 hover:underline">Mot de passe oublier?</a>
-            <a href="register.php" class="link">Creer un compte !</a>
         </div>
     </div>
 </body>

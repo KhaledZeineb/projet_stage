@@ -14,13 +14,13 @@ if (isset($_GET['cin'])) {
     $result = mysqli_query($conn, $query);
     $res = mysqli_query($conn, "DELETE FROM photo_de_profile WHERE cin = '$cin'");
     if($result and $res){
-        ?><script>choix = confirm("voulez vous suprimer ce stagiaire ? ");
+        ?><script>choix = confirm("Voulez-vous supprimer ce stagiaire ? ");
         if(choix){
-            alert("Stagiaire suprimé avec succès");
+            alert("Stagiaire supprimé avec succès");
             window.location.href = "php_page1.php";
         }
         else{
-            alert("Stagiaire non suprimé");
+            alert("Stagiaire non supprimé");
             window.location.href = "php_page1.php";
         }
 
