@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('internshipForm');
-    const sections = document.querySelectorAll('.form-section');
-    const navButtons = document.querySelectorAll('.section-btn');
-    const prevBtn = document.querySelector('.btn-prev');
-    const nextBtn = document.querySelector('.btn-next');
-    let currentSection = 0;
+    const form = document.getElementById('internshipForm'); // Formulaire principal
+    const sections = document.querySelectorAll('.form-section'); // Sections du formulaire
+    const navButtons = document.querySelectorAll('.section-btn'); // Boutons de navigation entre les sections
+    const prevBtn = document.querySelector('.btn-prev'); // Bouton "Précédent"
+    const nextBtn = document.querySelector('.btn-next'); // Bouton "Suivant" ou "Soumettre"
+    let currentSection = 0; // Index de la section actuelle
 
     // Fonction de validation pour chaque section
     function validateSection(sectionIndex) {
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return isValid;
     }
 
+    // Fonction pour afficher la section actuelle
     function afficherSection(index) {
         sections.forEach((section, i) => {
             section.classList.toggle('hidden', i !== index);

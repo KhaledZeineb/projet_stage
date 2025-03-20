@@ -145,11 +145,14 @@
     </div>
 
     <!-- Boutons d'Actions -->
-    <div class="mt-6 flex justify-end space-x-4">
-      <a href="../php_page1.php" class="flex justify-center items-center py-2 px-4 rounded-full border-none bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
-        &#8592; Retour à l'accueil
-      </a>
-    </div>
+<div class="mt-6 flex justify-end space-x-4">
+  <a href="../php_page1.php" class="flex justify-center items-center py-2 px-4 rounded-full border-none bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+    &#8592; Retour à l'accueil
+  </a>
+  <a href="generate_pdf.php?cin=<?php echo $cin; ?>" class="flex justify-center items-center py-2 px-4 rounded-full border-none bg-blue-500 text-white hover:bg-blue-600 transition">
+    Télécharger le Profil (PDF)
+  </a>
+</div>
   </div>
 
    <!-- Footer -->
