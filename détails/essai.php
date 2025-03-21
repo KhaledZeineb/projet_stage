@@ -62,7 +62,7 @@
 <div class="relative max-w-3xl w-full p-8 bg-white rounded-xl shadow-lg border mt-32 mb-40">
     <!-- Photo et Header -->
     <div class="flex items-center space-x-6 border-b pb-6">
-      <div class="w-32 h-32 border-4 border-blue-500 rounded-full overflow-hidden shadow-md">
+      <div class="w-32 h-32 overflow-hidden shadow-md">
         <?php while ($row = mysqli_fetch_assoc($res)) { ?>
             <img class="w-full h-full object-cover" src="../new profil/Images/<?php echo $row['photo']; ?>">
         <?php } ?>
@@ -108,7 +108,9 @@
     <!-- Informations de Stage -->
     <div class="mt-6">
       <h2 class="text-xl font-semibold text-blue-700 mb-4">Informations sur le Stage</h2>
-      <div class="grid grid-cols-2 gap-6">
+      
+      <!-- Premières informations en grid (Spécialité et Niveau) -->
+      <div class="grid grid-cols-2 gap-6 mb-6">
         <div>
           <p class="text-sm text-gray-500">Spécialité Universitaire</p>
           <p class="text-lg font-medium text-gray-800"> <?php echo htmlspecialchars($stagiaire['specialite_universitaire']); ?></p>
@@ -117,6 +119,16 @@
           <p class="text-sm text-gray-500">Niveau de Stage</p>
           <p class="text-lg font-medium text-gray-800"> <?php echo htmlspecialchars($stagiaire['niveau_de_stage']); ?></p>
         </div>
+      </div>
+      
+      <!-- Sujet de Stage (séparé sur une ligne unique) -->
+      <div class="mb-6">
+        <p class="text-sm text-gray-500">Sujet de Stage</p>
+        <p class="text-lg font-medium text-gray-800"> <?php echo htmlspecialchars($stagiaire['sujet_de_stage'] ?? 'Non défini'); ?></p>
+      </div>
+      
+      <!-- Autres informations en grid -->
+      <div class="grid grid-cols-2 gap-6">
         <div>
           <p class="text-sm text-gray-500">Date de Début</p>
           <p class="text-lg font-medium text-gray-800"> <?php echo htmlspecialchars($stagiaire['date_de_debut']); ?></p>

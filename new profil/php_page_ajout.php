@@ -29,6 +29,8 @@ $email = isset($_POST['email']) ? $_POST['email'] : '';
 $papierA = isset($_POST['papiers_apportés']) ? $_POST['papiers_apportés'] : '';
 $copy_CIN = isset($_POST['copie_cin_apportée']) ? $_POST['copie_cin_apportée'] : '';
 $type_S = isset($_POST['type_de_stage']) ? $_POST['type_de_stage'] : '';
+$sujet_stage = isset($_POST['sujet']) ? $_POST['sujet'] : '';
+
 
 // Vérifier si le stagiaire existe déjà dans la base de données
 $sql = "SELECT * FROM stagiaires WHERE cin='" . mysqli_real_escape_string($conn, $cin) . "';";
@@ -45,7 +47,7 @@ if (mysqli_num_rows($test) != 0) {
 } else {
     // Si le stagiaire n'existe pas, insérer les données dans la base de données
     $sql = "INSERT INTO stagiaires 
-        (prenom, nom, institution, annee_universitaire, niveau_de_stage, specialite_universitaire, avec_binome, date_de_debut, date_de_fin, cin, telephone, email, papiers_apportes, copie_cin_apportee, type_de_stage) 
+        (prenom, nom, institution, annee_universitaire, niveau_de_stage, specialite_universitaire, avec_binome, date_de_debut, date_de_fin, cin, telephone, email, papiers_apportes, copie_cin_apportee, type_de_stage, sujet_de_stage) 
         VALUES (
             '" . mysqli_real_escape_string($conn, $prenom) . "',
             '" . mysqli_real_escape_string($conn, $nom) . "',
@@ -61,7 +63,8 @@ if (mysqli_num_rows($test) != 0) {
             '" . mysqli_real_escape_string($conn, $email) . "',
             '" . mysqli_real_escape_string($conn, $papierA) . "',
             '" . mysqli_real_escape_string($conn, $copy_CIN) . "',
-            '" . mysqli_real_escape_string($conn, $type_S) . "'
+            '" . mysqli_real_escape_string($conn, $type_S) . "',
+            '" . mysqli_real_escape_string($conn, $sujet_stage) . "'
         );";
 
     // Gestion de l'upload de la photo de profil

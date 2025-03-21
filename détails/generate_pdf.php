@@ -43,7 +43,6 @@ if (!file_exists($photoPath) || empty($photo)) {
 // Création d'une instance TCPDF
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
-
 // Définition des informations du document
 $pdf->SetCreator('Système de Gestion des Stagiaires');
 $pdf->SetAuthor('Votre Nom');
@@ -55,8 +54,9 @@ $pdf->SetKeywords('Stagiaire, Profil, PDF');
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 
-// Définition des marges (gauche, haut, droite)
+// Définition des marges (gauche, haut, droite, bas) - Réduire légèrement la marge du bas
 $pdf->SetMargins(20, 20, 20);
+$pdf->SetAutoPageBreak(true, 15); // Réduire la marge du bas
 
 // Définition de la police
 $pdf->SetFont('helvetica', '', 10);
@@ -64,46 +64,54 @@ $pdf->SetFont('helvetica', '', 10);
 // Ajouter une page
 $pdf->AddPage();
 
+// Paramètres pour l'image circulaire
+$x = 30;  
+$y = 38;  // Remonter légèrement la photo
+$radius = 18;  // Réduire très légèrement la taille de la photo
+
+// Ajouter l'image AVANT le contenu HTML
+$pdf->Image($photoPath, $x - $radius, $y - $radius, $radius * 2, $radius * 2, '', '', '', false, 300, '', false, false, 0, false, false, false);
+
 // Début du contenu
 $html = '
 <style>
     h1 {
-        font-size: 18pt;
+        font-size: 17pt;
         font-weight: bold;
         color: #2D3748;
         margin: 0;
         padding: 0;
     }
     h2 {
-        font-size: 14pt;
+        font-size: 13pt;
         font-weight: bold;
         color: #3182CE;
         border-bottom: 1px solid #3182CE;
         padding: 0;
-        margin: 15px 0 10px 0;
+        margin: 10px 0 5px 0;
     }
     .institution {
-        font-size: 12pt;
+        font-size: 11pt;
         color: #2D3748;
         font-weight: bold;
         margin: 0;
         padding: 0;
     }
     .academic-year {
-        font-size: 11pt;
+        font-size: 10pt;
         color: #4A5568;
         margin: 0;
         padding: 0;
         font-style: italic;
     }
     .info-label {
-        font-size: 10pt;
+        font-size: 9pt;
         color: #718096;
         margin: 0;
         padding: 0;
     }
     .info-value {
-        font-size: 11pt;
+        font-size: 10pt;
         font-weight: bold;
         color: #2D3748;
         margin: 0;
@@ -114,7 +122,7 @@ $html = '
         border-collapse: collapse;
     }
     td {
-        padding: 5px 0;
+        padding: 2px 0;
         vertical-align: top;
     }
     .photo-container {
@@ -125,14 +133,14 @@ $html = '
         padding-left: 25px;
     }
     .section-spacer {
-        height: 10px;
+        height: 3px;
     }
 </style>
 
 <table>
     <tr>
         <td width="25%" class="photo-container">
-            <!-- Photo placeholder - will be replaced with circular image -->
+            <!-- Photo placeholder -->
         </td>
         <td width="75%" class="header-info">
             <h1>' . htmlspecialchars($stagiaire['prenom'] . " " . $stagiaire['nom']) . '</h1>
@@ -142,7 +150,6 @@ $html = '
     </tr>
 </table>
 
-<div class="section-spacer"></div>
 <div class="section-spacer"></div>
 
 <h2>Informations personnelles</h2>
@@ -194,6 +201,12 @@ $html = '
         </td>
     </tr>
     <tr>
+        <td colspan="2">
+            <p class="info-label">Sujet de Stage</p>
+            <p class="info-value">' . htmlspecialchars($stagiaire['sujet_de_stage'] ?? 'Non défini') . '</p>
+        </td>
+    </tr>
+    <tr>
         <td>
             <p class="info-label">Date de Début</p>
             <p class="info-value">' . htmlspecialchars($stagiaire['date_de_debut']) . '</p>
@@ -205,12 +218,12 @@ $html = '
     </tr>
     <tr>
         <td>
-            <p class="info-label">Avec Binôme</p>
-            <p class="info-value">' . htmlspecialchars($stagiaire['avec_binome']) . '</p>
-        </td>
-        <td>
             <p class="info-label">Type de Stage</p>
             <p class="info-value">' . htmlspecialchars($stagiaire['type_de_stage']) . '</p>
+        </td>
+        <td>
+            <p class="info-label">Avec Binôme</p>
+            <p class="info-value">' . htmlspecialchars($stagiaire['avec_binome']) . '</p>
         </td>
     </tr>
     <tr>
@@ -228,20 +241,6 @@ $html = '
 
 // Ajouter le contenu HTML
 $pdf->writeHTML($html, true, false, true, false, '');
-
-// Ajout de l'image en cercle
-// Pour créer une image circulaire, nous devons la traiter avant de l'insérer
-// Nous utiliserons les méthodes de TCPDF pour dessiner un cercle et y placer l'image
-$x = 30;  // Position X du centre du cercle
-$y = 40;  // Position Y du centre du cercle
-$radius = 20;  // Rayon du cercle
-
-
-// Ajouter l'image au-dessus
-$pdf->Image($photoPath, $x - $radius, $y - $radius, $radius * 2, $radius * 2, '', '', '', false, 300, '', false, false, 0, false, false, false);
-
-
-
 
 // Fermer et sortir le document PDF
 $pdf->Output('profil_stagiaire.pdf', 'D');

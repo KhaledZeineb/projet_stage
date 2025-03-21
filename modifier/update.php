@@ -35,6 +35,7 @@ $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email
 $papierA = isset($_POST['papiers_apportés']) ? mysqli_real_escape_string($conn, $_POST['papiers_apportés']) : '';
 $copy_CIN = isset($_POST['copie_cin_apportée']) ? mysqli_real_escape_string($conn, $_POST['copie_cin_apportée']) : '';
 $type_S = isset($_POST['type_de_stage']) ? mysqli_real_escape_string($conn, $_POST['type_de_stage']) : '';
+$sujet_de_stage = isset($_POST['sujet']) ? mysqli_real_escape_string($conn, $_POST['sujet']) : '';
 
 // Vérification si le stagiaire existe
 $sql = "SELECT * FROM stagiaires WHERE cin='$cin';";
@@ -58,7 +59,8 @@ if (mysqli_num_rows($test) == 0) {
         email='$email', 
         papiers_apportes='$papierA', 
         copie_cin_apportee='$copy_CIN', 
-        type_de_stage='$type_S' 
+        type_de_stage='$type_S',
+        sujet_de_stage='$sujet_de_stage' 
         WHERE cin='$cin';";
 
     $res = mysqli_query($conn, $sql);

@@ -229,6 +229,9 @@
                             <option value="En présentiel">En présentiel</option>
                             <option value="A distance">A distance</option>
                         </select>
+                        <label class="block text-sm font-medium text-gray-700" for="sujet">Sujet du stage :</label>
+                        <input type="text" name="sujet" id="sujet" required>
+
                     </div>
                    
                 </div>
